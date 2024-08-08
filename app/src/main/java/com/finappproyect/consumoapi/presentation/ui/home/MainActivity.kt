@@ -52,35 +52,22 @@ class MainActivity : AppCompatActivity() {
     private fun searchText(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
             val myResponse = retrofit.create(ApiService::class.java).getCharacterByName(query)
-            Log.d("pruebaConexion", "mi response: ${myResponse}")
-            Log.d("pruebaConexion", "mi response: ${myResponse.isSuccessful}")
-            Log.d("pruebaConexion", "mi response: ${myResponse.body()}")
-            Log.d("pruebaConexion", "mi response: ${myResponse.body()?.results}")
+
 
             if (myResponse.isSuccessful) {
-                val characters = myResponse.body()?.results ?: emptyList()
-                characters.forEach { character ->
-                    Log.d("pruebaConexion", "Character name: ${character.name}, image: ${character.image}")
+                val response = myResponse.body()
+                if (response != null) {
+
+
+                } else {
+                    Log.e("pruebaConexion", "Error en response: ${response}")
                 }
+
             } else {
-                Log.e("pruebaConexion", "Error: ${myResponse.errorBody()?.string()}")
+                Log.e("pruebaConexion", "Error en myResponse: ${myResponse.errorBody()?.string()}")
             }
 
-            /*val myResponse = retrofit.create(ApiService::class.java).getCharacterByName(query)
 
-            Log.i("pruebaConexion", "my response: ${myResponse}")
-            Log.i("pruebaConexion", "my response body: ${myResponse.body()}")
-            Log.i("pruebaConexion", "my response results: ${myResponse.body()?.results}")
-            Log.i("pruebaConexion", "my response susccesful: ${myResponse.isSuccessful}")
-            *//*if (myResponse) {
-               val response = myResponse.body()
-                if (response?.result != null){
-                    Log.i("pruebaConexion", "Obtencion de datos exitosa")
-                    Log.i("pruebaConexion", "los datos son: ${response.result}")
-                }
-            } else {
-                Log.i("pruebaConexion", "Error al obtener la respuesta")
-            }*/
         }
     }
 
