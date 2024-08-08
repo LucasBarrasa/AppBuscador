@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var retrofit: Retrofit
-    private lateinit var personajesAdapter: PersonajesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +32,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        //Adapters
-        personajesAdapter = PersonajesAdapter()
-        binding.rvListado.layoutManager = LinearLayoutManager(this)
-        binding.rvListado.adapter = personajesAdapter
-
     }
 
     private fun initListener() {
@@ -61,9 +55,7 @@ class MainActivity : AppCompatActivity() {
             if (myResponse.isSuccessful) {
                 val response = myResponse.body()
                 if (response != null){
-                    runOnUiThread {
-                        personajesAdapter.updateListPersonajes(response.results)
-                    }
+
                 } else {
                     Log.e("pruebaConexion", "Error response es null: ${response}")
                 }
