@@ -1,0 +1,30 @@
+[33mcommit c63f7981c80649d0003afbc0c7a91adb78d6717e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mrecyclerView[m[33m)[m
+Merge: 46b5d86 e24db01
+Author: LucasBarrasa <lucasbarrasa96@gmail.com>
+Date:   Thu Aug 8 11:52:19 2024 -0300
+
+    Merge con rama main realizado
+
+[33mcommit 46b5d863fc7d22b062935d0afbdc2e5965f45601[m[33m ([m[1;31morigin/recyclerView[m[33m)[m
+Author: LucasBarrasa <lucasbarrasa96@gmail.com>
+Date:   Thu Aug 8 11:47:26 2024 -0300
+
+    Version anterior a la creacion del recycleview
+
+[33mcommit e24db011f4466d1e470af5ec2f6b120ab8073d5a[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: LucasBarrasa <lucasbarrasa96@gmail.com>
+Date:   Thu Aug 8 11:38:57 2024 -0300
+
+    Creaccion y conexion RecyclerView ddel listado del inicio con el Searchview
+
+[33mcommit 6d402a531afc2412e4e8e0517f8019d688c49ff4[m
+Author: LucasBarrasa <lucasbarrasa96@gmail.com>
+Date:   Mon Aug 5 16:58:15 2024 -0300
+
+    Conexion con api
+
+[33mcommit 9f4cb828a6380928974f9f8569226185dbc22a48[m
+Author: LucasBarrasa <lucasbarrasa96@gmail.com>
+Date:   Sat Aug 3 03:05:08 2024 -0300
+
+    Initial commit
