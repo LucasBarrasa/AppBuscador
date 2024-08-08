@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import com.finappproyect.consumoapi.data.api.ApiService
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.finappproyect.consumoapi.data.services.ApiService
 import com.finappproyect.consumoapi.databinding.ActivityMainBinding
+import com.finappproyect.consumoapi.presentation.ui.adapters.PersonajesAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var retrofit: Retrofit
+    private lateinit var personajesAdapter: PersonajesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun initUI() {
         //Adapters
+        personajesAdapter = PersonajesAdapter()
+        binding.rvListado.layoutManager = LinearLayoutManager(this)
+        binding.rvListado.adapter = personajesAdapter
+
     }
 
     private fun initListener() {
@@ -45,28 +52,25 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         })
-
-
     }
 
     private fun searchText(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
             val myResponse = retrofit.create(ApiService::class.java).getCharacterByName(query)
 
-
             if (myResponse.isSuccessful) {
                 val response = myResponse.body()
-                if (response != null) {
-
-
+                if (response != null){
+                    runOnUiThread {
+                        personajesAdapter.updateListPersonajes(response.results)
+                    }
                 } else {
-                    Log.e("pruebaConexion", "Error en response: ${response}")
+                    Log.e("pruebaConexion", "Error response es null: ${response}")
                 }
 
             } else {
-                Log.e("pruebaConexion", "Error en myResponse: ${myResponse.errorBody()?.string()}")
+                Log.e("pruebaConexion", "Error myResponse: ${myResponse.errorBody()}")
             }
-
 
         }
     }
